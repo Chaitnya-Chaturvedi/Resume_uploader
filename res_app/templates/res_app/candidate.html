@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Profile</title>
+    <link rel="stylesheet" href="{%static 'res_app/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{%static 'res_app/css/style.css'%}">
+</head>
+<body>
+    {% include 'res_app/messages.html'%}
+    <div class="container">
+        <h1 class="alert-danger text-center shadow p-3">Candidate Details</h1>
+        <div class="row">
+            <div class="col-sm-10 shadow p-5 offset-sm-1">
+                <h3 class="text-center alert-info shadow p-3"><u>Resume</u></h3>
+                <p class="float-end">Application No : {{candidate.id}}</p>
+                <img src="{{candidate.profile_image}}" alt="" class="img-fluid img-thumbnail mt-2 float-end" width="150" height="150">
+                <p>Name : {{candidate.name}}</p>
+                <p>Date of Birth : {{candidate.dob}}</p>
+                <p>Gender : {{candidate.gender}}</p>
+                <p>Address : {{candidate.locality}}, {{candidate.city}}, {{candidate.state}},{{candidate.pin}}</p>
+                <p>Mobile No. : {{candidate.mobile}}</p>
+                <p>Email ID : {{candidate.email}}</p>
+                <p>Preferred Job Locations : {{candidate.job_city}}</p>
+                <p>Attachment : <a href="{{candidate.my_file.url}}">Download</a> </p>
+                
+            </div>
+            
+        </div>
+
+    </div>
+    <a href="/" class="btn btn-danger text-center offset-sm-1">Home Page</a>
+
+    <script src="{% static 'res_app/js/bootstrap.js'%}"></script>
+    <script src="{% static 'res_app/js/jquery.js'%}"></script>
+    <script src="{% static 'res_app/js/popper.js'%}"></script>
+
+</body>
+</html>

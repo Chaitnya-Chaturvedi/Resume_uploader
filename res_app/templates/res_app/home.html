@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Uploader</title>
+    <link rel="stylesheet" href="{%static 'res_app/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{%static 'res_app/css/style.css'%}">
+</head>
+<body>
+    {% include 'res_app/messages.html'%}
+    <div class="container mt-5" >
+        <h2 class="alert alert-danger shadow p-5" >Personal Details</h2>
+        <div class="row">
+            <div class="col-sm-8">
+                <form action="" method="post" enctype="multipart/form-data" class="shadow p-5">
+                {% csrf_token%}
+                {% for fm in form%}
+                    <div class="from-group mb-3" >
+                        {{fm.label_tag}} {{fm}} <small class="text-danger"> {{fm.errors|striptags}} </small>
+                    </div>
+                {% endfor%}
+                <input type="submit" value="Submit" class="btn btn-primary">
+                {% if form.non_field_errors %}
+                    {% for error in  form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                    {% endfor%}
+                {% endif %}        
+                </form>
+            </div>
+            <div class="col-sm-4">
+                <h4 class="text-center mb-3"><u>List of Candidates</u></h4>
+                {% for candidate in candidates%}
+                    {{candidate.id}} : <a href="{% url 'candidate' candidate.id%}">{{candidate.name}}</a> 
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+     
+       
+
+    </div>
+    <script src="{% static 'res_app/js/bootstrap.js'%}"></script>
+    <script src="{% static 'res_app/js/jquery.js'%}"></script>
+    <script src="{% static 'res_app/js/popper.js'%}"></script>
+
+</body>
+</html>
